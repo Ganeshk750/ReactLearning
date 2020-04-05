@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
 /* This is functional Comp with useState Hooks */
 /* const App = () =>{
@@ -14,6 +14,29 @@ import React, { Component, useState } from 'react';
    </div>
  );
 }; */
+
+/* using hooks useEffect */
+const App = () =>{
+  const [count, setCount] = useState(0);
+
+  useEffect(() =>{
+    document.title = `Clicked ${count} times`
+  })
+ 
+  const increment = () =>{
+    setCount(count + 1)
+  } 
+  return(
+    <div>
+      <h2>Countr App</h2>
+      <button onClick={increment}>Clicked{count}times</button>
+    </div>
+  );
+ };
+
+
+
+
 
 /* This is class Comp */
 /* class App extends Component {
@@ -39,7 +62,7 @@ import React, { Component, useState } from 'react';
 } */
 
 /* Here we discuss life cycle method with class comp */
- class App extends Component {
+/*  class App extends Component {
    state = {
     count: 0
    }
@@ -65,7 +88,7 @@ import React, { Component, useState } from 'react';
     
   }
    
-} 
+}  */
 
 
 export default App;
