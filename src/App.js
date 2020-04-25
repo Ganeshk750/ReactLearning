@@ -8,7 +8,7 @@ const App = () =>{
   const [url, setUrl] = useState(`http://hn.algolia.com/api/v1/search?query=react`)
   // fetch news
   const fetchNews = () =>{
-    fetch(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`)
+    fetch(url)
     .then(result => result.json())
     .then(data => setNews(data.hits))
     .catch(error => console.log(error))
@@ -16,7 +16,7 @@ const App = () =>{
 
   useEffect(() =>{
     fetchNews();
-  }, [searchQuery]);
+  }, [url]);
 
   const handleChange = e =>{
      setSerchQuery(e.target.value);
@@ -24,7 +24,7 @@ const App = () =>{
 
   const handleSubmit = e =>{
     e.preventDefault()
-    
+    setUrl(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`);
   }
   return (
     <div>
