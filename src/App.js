@@ -3,23 +3,36 @@ import React, { Component, useState, useEffect } from 'react';
 //News Api testing
 const App = () =>{
   // state
-  const [news, setNews] = useState([])
-
+  const [news, setNews] = useState([]);
+  const [searchQuery, setSerchQuery] = useState("react");
+  const [url, setUrl] = useState(`http://hn.algolia.com/api/v1/search?query=react`)
   // fetch news
   const fetchNews = () =>{
-    fetch('http://hn.algolia.com/api/v1/search?query=react')
+    fetch(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`)
     .then(result => result.json())
     .then(data => setNews(data.hits))
     .catch(error => console.log(error))
   };
 
   useEffect(() =>{
-    fetchNews()
-  })
+    fetchNews();
+  }, [searchQuery]);
 
+  const handleChange = e =>{
+     setSerchQuery(e.target.value);
+  }
+
+  const handleSubmit = e =>{
+    e.preventDefault()
+    
+  }
   return (
     <div>
       <h2>News</h2>
+      <form onSubmit={handleSubmit}>
+      <input type="text" value={searchQuery} onChange={handleChange} />
+      <button>Search</button>
+      </form>
       {news.map((n, index) =>(
         <p key={1}>{n.title}</p>
          ))}
