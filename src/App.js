@@ -1,5 +1,32 @@
 import React, { Component, useState, useEffect } from 'react';
 
+//News Api testing
+const App = () =>{
+  // state
+  const [news, setNews] = useState([])
+
+  // fetch news
+  const fetchNews = () =>{
+    fetch('http://hn.algolia.com/api/v1/search?query=react')
+    .then(result => result.json())
+    .then(data => setNews(data.hits))
+    .catch(error => console.log(error))
+  };
+
+  useEffect(() =>{
+    fetchNews()
+  })
+
+  return (
+    <div>
+      <h2>News</h2>
+      {news.map((n, index) =>(
+        <p key={1}>{n.title}</p>
+         ))}
+    </div>
+  )
+};
+
 /* This is functional Comp with useState Hooks */
 /* const App = () =>{
  const [count, setCount] = useState(0);
@@ -16,23 +43,23 @@ import React, { Component, useState, useEffect } from 'react';
 }; */
 
 /* using hooks useEffect */
-const App = () =>{
-  const [count, setCount] = useState(0);
+// const App = () =>{
+//   const [count, setCount] = useState(0);
 
-  useEffect(() =>{
-    document.title = `Clicked ${count} times`
-  })
+//   useEffect(() =>{
+//     document.title = `Clicked ${count} times`
+//   })
  
-  const increment = () =>{
-    setCount(count + 1)
-  } 
-  return(
-    <div>
-      <h2>Countr App</h2>
-      <button onClick={increment}>Clicked{count}times</button>
-    </div>
-  );
- };
+//   const increment = () =>{
+//     setCount(count + 1)
+//   } 
+//   return(
+//     <div>
+//       <h2>Countr App</h2>
+//       <button onClick={increment}>Clicked{count}times</button>
+//     </div>
+//   );
+//  };
 
 
 
