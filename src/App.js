@@ -31,17 +31,28 @@ const App = () =>{
     e.preventDefault()
     setUrl(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`);
   }
-  return (
-    <div>
-      <h2>News</h2>
-      {loading? <h2>Loading....</h2>: ''}
-      <form onSubmit={handleSubmit}>
+
+  const showLoading = () => (loading? <h2>Loading....</h2>: '');
+
+  const searchForm = () => (
+    <form onSubmit={handleSubmit}>
       <input type="text" value={searchQuery} onChange={handleChange} />
       <button>Search</button>
       </form>
-      {news.map((n, index) =>(
-        <p key={1}>{n.title}</p>
-         ))}
+  );
+
+  const showNews = () => (
+    news.map((n, index) =>(
+      <p key={1}>{n.title}</p>
+       ))
+  );
+
+  return (
+    <div>
+      <h2>News</h2>
+      {showLoading()}
+      {searchForm()}
+      {showNews()}
     </div>
   )
 };
