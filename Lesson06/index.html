@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+<body>
+
+    <div id="first"></div>
+
+    <script type="text/babel">
+        
+        class FirstComponent extends React.Component {
+            render(){
+                return <div>
+                       <h1>{this.props.text}</h1>
+                       <p>Hey I am {this.props.children}</p>
+                    </div>
+            }
+        }
+        /* Props Example */
+        ReactDOM.render(
+                <div>
+                <FirstComponent text="Hello Everyone">Message One</FirstComponent>
+                <FirstComponent text="Hello World">Message Two</FirstComponent>
+                <FirstComponent text="Good Bye">Message There</FirstComponent>
+                <FirstComponent text="Welcome World">Message Four</FirstComponent>
+                </div>, 
+                document.getElementById('first'));
+
+    </script>
+    
+</body>
+</html>
