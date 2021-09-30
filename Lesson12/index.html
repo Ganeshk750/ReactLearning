@@ -17,6 +17,7 @@
              padding: 15px;
              border: 1px solid orange;
              box-shadow: 2px 6px 12px rgba(0,0,0,0.2);
+             position: absolute;
          }
      </style>
 </head>
@@ -35,6 +36,18 @@ class Note extends React.Component  {
          }
      }
 
+
+       componentWillMount = () => {
+          this.style = {
+              right: this.reandomBetween(0, window.innerWidth - 150, 'px'),
+              top: this.reandomBetween(0, window.innerHeight - 150, 'px')
+          }
+       }
+
+       reandomBetween = (x, y, s) => {
+           return (x + Math.ceil(Math.random() * (y - x))) + 5;
+       }
+
         edit = () => {
             this.setState({editing: true})
         }
@@ -51,7 +64,7 @@ class Note extends React.Component  {
 
         renderForm = () => {
            return(
-               <div className="note">
+               <div className="note" style={this.style}>
                 <textarea ref="newText" rows="4" cols="30"></textarea>
                  <br></br>
                 <button onClick={this.save}>Save</button>
@@ -61,7 +74,7 @@ class Note extends React.Component  {
 
         renderDisplay = () => {
               return(
-                <div className="note">
+                <div className="note" style={this.style}>
                   <p>{this.props.children}</p> 
                   <span>
                      <button onClick={this.edit}>Edit</button>
